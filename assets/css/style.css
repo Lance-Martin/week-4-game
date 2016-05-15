@@ -1,0 +1,40 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-image: url("../images/avengersBackground.jpg");
+  background-size: cover;
+}
+
+#ironMan {
+  background-image: url("../images/ironMan.jpg");
+  background-size: cover;
+  height: 200px;
+  width: 200px;
+  display: inline-block;
+}
+
+#capAmerica {
+  background-image: url("../images/capAmerica.jpg");
+  background-size: cover;
+  height: 200px;
+  width: 200px;
+  display: inline-block;
+}
+
+#thor {
+  background-image: url("../images/thor.jpg");
+  background-size: cover;
+  height: 200px;
+  width: 200px;
+  display: inline-block;
+}
+
+#winterSoldier {
+  background-image: url("../images/winterSoldier.png");
+  background-size: cover;
+  height: 200px;
+  width: 200px;
+  display: inline-block;
+}
