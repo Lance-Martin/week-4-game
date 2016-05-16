@@ -21,66 +21,61 @@ $(document).ready(function(){
 
   var heroSelected = false;
 
-  if (heroSelected === false){
-    heroSelected = false;
-    $('.ironMan').on('click', function(){
+  $('.ironMan').on('click', function(){
+    if (heroSelected === false) {
       $('.myCharacter').append(this);
       heroSelected = true;
       $(this).attr("id","fighter");
       $('#instruction').html("Pick your opponent");
-      console.log(heroSelected);
-    });
+      console.log(heroSelected);}
+    else {
+      $('.challenger').append(this);
+      $('#instruction').html("Make them fight!");
+      alert("it works!");
+    }
+  });
 
-    $('.capAmerica').on('click', function(){
+  $('.capAmerica').on('click', function(){
+    if (heroSelected === false) {
       $('.myCharacter').append(this);
       heroSelected = true;
       $(this).attr("id","fighter");
       $('#instruction').html("Pick your opponent");
-      console.log(heroSelected);
-    });
+      console.log(heroSelected);}
+    else {
+      $('.challenger').append(this);
+      $('#instruction').html("Make them fight!");
+      alert("it works!");
+    }
+  });
 
     $('.thor').on('click', function(){
-      $('.myCharacter').append(this);
-      heroSelected = true;
-      $(this).attr("id","fighter");
-      $('#instruction').html("Pick your opponent");
-      console.log(heroSelected);
+      if (heroSelected === false) {
+        $('.myCharacter').append(this);
+        heroSelected = true;
+        $(this).attr("id","fighter");
+        $('#instruction').html("Pick your opponent");
+        console.log(heroSelected);}
+      else {
+        $('.challenger').append(this);
+        $('#instruction').html("Make them fight!");
+        alert("it works!");
+      }
     });
 
     $('.winterSoldier').on('click', function(){
-      $('.myCharacter').append(this);
-      heroSelected = true;
-      $(this).attr("id","fighter");
-      $('#instruction').html("Pick your opponent");
-      console.log(heroSelected);
+      if (heroSelected === false) {
+        $('.myCharacter').append(this);
+        heroSelected = true;
+        $(this).attr("id","fighter");
+        $('#instruction').html("Pick your opponent");
+        console.log(heroSelected);}
+      else {
+        $('.challenger').append(this);
+        $('#instruction').html("Make them fight!");
+        alert("it works!");
+      }
     });
-  }
-  else if(heroSelected === true) {
-    $('.ironMan').on('click', function(){
-      $('.challenger').append(this);
-      $('#instruction').html("Make them fight!");
-      alert("it works!");
-    });
-
-    $('.capAmerica').on('click', function(){
-      $('.challenger').append(this);
-      $('#instruction').html("Make them fight!");
-      alert("it works!");
-    });
-
-    $('.thor').on('click', function(){
-      $('.challenger').append(this);
-      $('#instruction').html("Make them fight!");
-      alert("it works!");
-    });
-
-    $('.winterSoldier').on('click', function(){
-      $('.challenger').append(this);
-      $('#instruction').html("Make them fight!");
-      alert("it works!");
-    });
-  }
-
 //Insert character name and health
   $('.ironMan').html("<p>Iron Man</p>"+"<p> health: "+ironMan.health+"</p>");
   $('.capAmerica').html("<p>Captain America</p>"+"<p> health: "+capAmerica.health+"</p>");
