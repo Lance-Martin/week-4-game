@@ -4,24 +4,24 @@
     <meta charset="utf-8">
     <title>Lance's Avenger RPG</title>
     <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
   </head>
   <body>
-    <div class="selectHero">
-      <div id="ironMan"></div>
-      <div id="capAmerica"></div>
-      <div id="thor"></div>
-      <div id="winterSoldier"></div>
+    <h1 id="instruction">Select your fighter</h1>
+    <div class="row selectHero">
+      <div class="col-md-2 ironMan"></div>
+      <div class="col-md-2 capAmerica"></div>
+      <div class="col-md-2 thor"></div>
+      <div class="col-md-2 winterSoldier"></div>
     </div>
     <h1>Your Character</h1>
-    <div class="myCharacter"></div>
-    <h1>Enemies to Attack </h1>
-    <div class="enemies"></div>
+    <div class="row myCharacter"></div>
     <h1>Fight section</h1>
-    <div class="button"></div>
+    <div class="row btn btn-default btn-lg">Fight!</div>
     <h1>Challenger</h1>
-    <div class="challenger"></div>
-    <script src="assets/javascript/game.js"></script>
+    <div class="row challenger"></div>
     <script src="https://code.jquery.com/jquery-2.2.3.js" integrity="sha256-laXWtGydpwqJ8JA+X9x2miwmaiKhn8tVmOVEigRNtP4=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="assets/javascript/game.js"></script>
   </body>
 </html>
