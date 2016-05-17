@@ -49,3 +49,12 @@ body {
   border: 10px white solid;
   margin-left: 25px;
 }
+
+#opponent {
+  border: 10px red solid;
+  margin-left: 25px;
+}
+
+#fightDetails {
+  color: white;
+}
