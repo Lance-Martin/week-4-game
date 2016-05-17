@@ -6,6 +6,11 @@ body {
   background-image: url("../images/avengersLogo.jpg");
   background-size: cover;
 }
+
+h1 {
+  color: white;
+  font-family: 'Orbitron', sans-serif;
+}
 .selectHero {
   display: inline;
 }
@@ -47,14 +52,36 @@ body {
 
 #fighter{
   border: 10px white solid;
-  margin-left: 25px;
+  margin-left: 15px;
+  width: 263px;
 }
 
 #opponent {
   border: 10px red solid;
-  margin-left: 25px;
+  margin-left: 50px;
+  width: 263px;
 }
 
 #fightDetails {
   color: white;
+  text-align: center;
+}
+
+#attack {
+  padding: auto;
+  padding-top: 60px;
+  text-align: center;
+}
+
+#foe {
+  text-align: center;
+}
+
+#character {
+  text-align: left;
+  padding-left: 100px;
+}
+
+#instruction {
+  margin-left: 20px;
 }
