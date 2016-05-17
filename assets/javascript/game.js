@@ -1,5 +1,5 @@
 $(document).ready(function(){
-  
+
 //Character objects and global variables
 //============================================================================
   var ironMan = {
@@ -105,24 +105,12 @@ $(document).ready(function(){
 //On click event for fight button
 //=============================================================================
   $('#attackOpponent').on('click', function() {
-    fighter.counterAttack += 5;
+    fighter.counterAttack += 2;
     opponent.health = opponent.health - fighter.counterAttack;
     fighter.health = fighter.health - opponent.counterAttack;
     console.log(opponent.health);
     console.log(fighter.health);
 
-//Alerts the player that their character has died
-    if (fighter.health <= 0) {
-      alert('Your fighter was killed! Reload this page to play again');
-    }
-
-//Lets the player know that they have defeated their current opponent, decreases the opponentsLeft count by 1, and removes the defeated opponent from the challenger section.
-    if (opponent.health <= 0){
-      opponentsLeft -=1;
-      alert("Well done hero. You defeated your opponent! Pick your next foe");
-      $('.challenger').empty();
-      console.log("opponentsLeft: "+ opponentsLeft);
-    }
 
 //Displays fight details
     if(opponent == ironMan ){
@@ -135,9 +123,30 @@ $(document).ready(function(){
       $('#fightDetails').html("<p>You attacked Winter Soldier for "+fighter.counterAttack+" health points</p>"+"<p>Winter Soldier attacked you for "+opponent.counterAttack+" health points");
     }
 
+    //Alerts the player that their character has died
+        if (fighter.health <= 0) {
+          $('#fightDetails').html("<p>Your hero was killed. Try again.</p>");
+          alert('Your fighter was killed! Play again');
+          reset();
+        }
+
+    //Lets the player know that they have defeated their current opponent, decreases the opponentsLeft count by 1, and removes the defeated opponent from the challenger section.
+        if (opponent.health <= 0){
+          opponentsLeft -=1;
+          $('#fightDetails').empty();
+          $('.challenger').empty();
+          $('#fightDetails').html("<p>Well done hero. You defeated your opponent! Pick your next foe.</p>");
+          console.log("opponentsLeft: "+ opponentsLeft);
+        }
+
+
+
     function reset(){
       heroSelected = false;
       opponentsLeft = 3;
+      $('#instruction').html("Select your fighter");
+      $('#fightDetails').empty();
+      $('.challenger').empty();
       $('.myCharacter').empty();
       $('.selectHero').append('<div class="col-md-2 ironMan"></div>');
       $('.selectHero').append('<div class="col-md-2 capAmerica"></div>');
@@ -155,6 +164,7 @@ $(document).ready(function(){
       $('.capAmerica').html("<p>Captain America</p>"+"<p> health: "+capAmerica.health+"</p>");
       $('.thor').html("<p>Thor</p>"+"<p> health: "+thor.health+"</p>");
       $('.winterSoldier').html("<p>Winter Soldier</p>"+"<p> health: "+winterSoldier.health+"</p>");
+
 
     }
 
