@@ -1,5 +1,6 @@
 $(document).ready(function(){
 
+
 //Character objects and global variables
 //============================================================================
   var ironMan = {
@@ -30,7 +31,7 @@ $(document).ready(function(){
 
 //On Click events for characters
 //===========================================================================
-
+function clicks() {
   $('.ironMan').on('click', function(){
     if (heroSelected === false) {
       $('.myCharacter').append(this);
@@ -96,16 +97,22 @@ $(document).ready(function(){
         console.log(opponent.health);
       }
     });
+}
+
+clicks();
 //Insert character name and health
+function characterStats() {
   $('.ironMan').html("<p>Iron Man</p>"+"<p> health: "+ironMan.health+"</p>");
   $('.capAmerica').html("<p>Captain America</p>"+"<p> health: "+capAmerica.health+"</p>");
   $('.thor').html("<p>Thor</p>"+"<p> health: "+thor.health+"</p>");
   $('.winterSoldier').html("<p>Winter Soldier</p>"+"<p> health: "+winterSoldier.health+"</p>");
+}
 
+characterStats();
 //On click event for fight button
 //=============================================================================
   $('#attackOpponent').on('click', function() {
-    fighter.counterAttack += 2;
+    fighter.counterAttack += 5;
     opponent.health = opponent.health - fighter.counterAttack;
     fighter.health = fighter.health - opponent.counterAttack;
     console.log(opponent.health);
@@ -160,23 +167,18 @@ $(document).ready(function(){
       capAmerica.counterAttack = 11;
       thor.counterAttack = 13;
       winterSoldier.counterAttack = 10;
-      $('.ironMan').html("<p>Iron Man</p>"+"<p> health: "+ironMan.health+"</p>");
-      $('.capAmerica').html("<p>Captain America</p>"+"<p> health: "+capAmerica.health+"</p>");
-      $('.thor').html("<p>Thor</p>"+"<p> health: "+thor.health+"</p>");
-      $('.winterSoldier').html("<p>Winter Soldier</p>"+"<p> health: "+winterSoldier.health+"</p>");
-
+      characterStats();
+      clicks();
 
     }
 
     if (opponentsLeft === 0) {
+      alert("Amazing job hero! You've proven yourself as the best and, defeated all of your challengers. Pick a new character to play again.");
       reset();
       console.log("reset");
     }
 
 //Updates the characters displayed health affter being attacked
-    $('.ironMan').html("<p>Iron Man</p>"+"<p> health: "+ironMan.health+"</p>");
-    $('.capAmerica').html("<p>Captain America</p>"+"<p> health: "+capAmerica.health+"</p>");
-    $('.thor').html("<p>Thor</p>"+"<p> health: "+thor.health+"</p>");
-    $('.winterSoldier').html("<p>Winter Soldier</p>"+"<p> health: "+winterSoldier.health+"</p>");
+    characterStats();
   });
 });
