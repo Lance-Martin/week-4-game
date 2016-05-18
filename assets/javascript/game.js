@@ -9,18 +9,18 @@ $(document).ready(function(){
   };
 
   var capAmerica = {
-    health: 110,
-    counterAttack: 11,
+    health: 100,
+    counterAttack: 5,
   };
 
   var thor = {
-    health: 95,
-    counterAttack: 13,
+    health: 150,
+    counterAttack: 20,
   };
 
   var winterSoldier = {
-    health: 115,
-    counterAttack: 10,
+    health: 180,
+    counterAttack: 25,
   };
 
   var heroSelected = false;
@@ -130,7 +130,7 @@ characterStats();
 //=============================================================================
   $('#attackOpponent').on('click', function() {
     if( foeSelected === true) {
-    fighter.counterAttack += 5;
+    fighter.counterAttack += 8;
     opponent.health = opponent.health - fighter.counterAttack;
     fighter.health = fighter.health - opponent.counterAttack;
     console.log(opponent.health);
@@ -153,15 +153,22 @@ characterStats();
     }
 
     //Alerts the player that their character has died
-        if (fighter.health <= 0) {
+        if (fighter.health <= 0 && opponent.health > 0) {
           $('#fightDetails').html("<p>Your hero was killed. Try again.</p>");
           alert('Your fighter was killed! Play again');
+          reset();
+        }
+
+        if (fighter.health <= 0 && opponent.health <= 0) {
+          $('#fightDetails').html("<p>Your hero was killed. Try again.</p>");
+          alert("Your character was killed, but you died a hero. You took your opponent down with you. Play again. ");
           reset();
         }
 
     //Lets the player know that they have defeated their current opponent, decreases the opponentsLeft count by 1, and removes the defeated opponent from the challenger section.
         if (opponent.health <= 0 && foeSelected === true){
           opponentsLeft -=1;
+          fighter.health += opponent.counterAttack;
           foeSelected = false;
           $('#fightDetails').empty();
           $('.challenger').empty();
@@ -185,13 +192,13 @@ characterStats();
       $('.selectHero').append('<div class="col-md-2 thor"></div>');
       $('.selectHero').append('<div class="col-md-2 winterSoldier"></div>');
       ironMan.health = 120;
-      capAmerica.health = 110;
-      thor.health = 95;
-      winterSoldier.health = 115;
+      capAmerica.health = 100;
+      thor.health = 150;
+      winterSoldier.health = 180;
       ironMan.counterAttack = 8;
-      capAmerica.counterAttack = 11;
-      thor.counterAttack = 13;
-      winterSoldier.counterAttack = 10;
+      capAmerica.counterAttack = 5;
+      thor.counterAttack = 20;
+      winterSoldier.counterAttack = 25;
       characterStats();
       clicks();
 
