@@ -125,3 +125,10 @@ h1 {
 #instruction {
   margin-left: 30px;
 }
+
+.footer {
+  text-align: center;
+  margin-top: 80px;
+  color: white;
+  text-decoration: none;
+}

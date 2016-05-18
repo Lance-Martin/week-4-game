@@ -198,7 +198,7 @@ characterStats();
     }
 
     if (opponentsLeft === 0) {
-      alert("Amazing job hero! You've proven yourself as the best and, defeated all of your challengers. Pick a new character to play again.");
+      alert("Amazing job hero! You've proven yourself as the best and defeated all of your challengers. Pick a new character to play again.");
       reset();
       console.log("reset");
     }
