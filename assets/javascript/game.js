@@ -27,6 +27,7 @@ $(document).ready(function(){
   var fighter;
   var opponent;
   var opponentsLeft = 3;
+  var foeSelected = false;
 
 
 //On Click events for characters
@@ -41,11 +42,15 @@ function clicks() {
       $('#instruction').html("Pick your opponent");
       console.log(fighter.health);
     }
-    else {
+    else if (heroSelected === true && foeSelected === false) {
+      foeSelected = true;
       $('.challenger').append(this);
       $('#instruction').html("Make them fight!");
       opponent = ironMan;
       $(this).attr("id","opponent");
+    }
+    else {
+      alert('Please defeat your current opponent before selecting another.');
     }
   });
 
@@ -57,11 +62,15 @@ function clicks() {
       $(this).attr("id","fighter");
       $('#instruction').html("Pick your opponent");
     }
-    else {
+    else if (heroSelected === true && foeSelected === false) {
+      foeSelected = true;
       $('.challenger').append(this);
       $('#instruction').html("Make them fight!");
       opponent = capAmerica;
       $(this).attr("id","opponent");
+    }
+    else {
+      alert('Please defeat your current opponent before selecting another.');
     }
   });
 
@@ -73,11 +82,15 @@ function clicks() {
         $(this).attr("id","fighter");
         $('#instruction').html("Pick your opponent");
       }
-      else {
+      else if (heroSelected === true && foeSelected === false) {
+        foeSelected = true;
         $('.challenger').append(this);
         $('#instruction').html("Make them fight!");
         opponent = thor;
         $(this).attr("id","opponent");
+      }
+      else {
+        alert('Please defeat your current opponent before selecting another.');
       }
     });
 
@@ -89,12 +102,16 @@ function clicks() {
         $(this).attr("id","fighter");
         $('#instruction').html("Pick your opponent");
       }
-      else {
+      else if (heroSelected === true && foeSelected === false) {
+        foeSelected = true;
         $('.challenger').append(this);
         $('#instruction').html("Make them fight!");
         opponent = winterSoldier;
         $(this).attr("id","opponent");
         console.log(opponent.health);
+      }
+      else {
+        alert('Please defeat your current opponent before selecting another.');
       }
     });
 }
@@ -140,6 +157,7 @@ characterStats();
     //Lets the player know that they have defeated their current opponent, decreases the opponentsLeft count by 1, and removes the defeated opponent from the challenger section.
         if (opponent.health <= 0){
           opponentsLeft -=1;
+          foeSelected = false;
           $('#fightDetails').empty();
           $('.challenger').empty();
           $('#fightDetails').html("<p>Well done hero. You defeated your opponent! Pick your next foe.</p>");
