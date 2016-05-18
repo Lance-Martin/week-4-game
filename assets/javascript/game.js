@@ -129,22 +129,27 @@ characterStats();
 //On click event for fight button
 //=============================================================================
   $('#attackOpponent').on('click', function() {
+    if( foeSelected === true) {
     fighter.counterAttack += 5;
     opponent.health = opponent.health - fighter.counterAttack;
     fighter.health = fighter.health - opponent.counterAttack;
     console.log(opponent.health);
     console.log(fighter.health);
+  }
 
 
 //Displays fight details
-    if(opponent == ironMan ){
+    if(opponent == ironMan && foeSelected === true ){
       $('#fightDetails').html("<p>You attacked Iron Man for "+fighter.counterAttack+" health points</p>"+"<p>Iron Man attacked you for "+opponent.counterAttack+" health points");
-    } else if (opponent === thor) {
+    } else if (opponent === thor && foeSelected === true) {
       $('#fightDetails').html("<p>You attacked Thor for "+fighter.counterAttack+" health points</p>"+"<p>Thor attacked you for "+opponent.counterAttack+" health points");
-    } else if (opponent === capAmerica) {
+    } else if (opponent === capAmerica && foeSelected === true) {
       $('#fightDetails').html("<p>You attacked Captain America for "+fighter.counterAttack+" health points</p>"+"<p>Captain America attacked you for "+opponent.counterAttack+" health points");
-    } else if (opponent === winterSoldier) {
+    } else if (opponent === winterSoldier && foeSelected === true) {
       $('#fightDetails').html("<p>You attacked Winter Soldier for "+fighter.counterAttack+" health points</p>"+"<p>Winter Soldier attacked you for "+opponent.counterAttack+" health points");
+    }
+    else {
+      $('#fightDetails').html("<p>Pick a new opponent before continuing to fight");
     }
 
     //Alerts the player that their character has died
@@ -155,7 +160,7 @@ characterStats();
         }
 
     //Lets the player know that they have defeated their current opponent, decreases the opponentsLeft count by 1, and removes the defeated opponent from the challenger section.
-        if (opponent.health <= 0){
+        if (opponent.health <= 0 && foeSelected === true){
           opponentsLeft -=1;
           foeSelected = false;
           $('#fightDetails').empty();
@@ -168,9 +173,11 @@ characterStats();
 
     function reset(){
       heroSelected = false;
+      foeSelected = false;
       opponentsLeft = 3;
       $('#instruction').html("Select your fighter");
       $('#fightDetails').empty();
+      $('.selectHero').empty();
       $('.challenger').empty();
       $('.myCharacter').empty();
       $('.selectHero').append('<div class="col-md-2 ironMan"></div>');
