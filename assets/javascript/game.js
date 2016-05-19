@@ -6,21 +6,25 @@ $(document).ready(function(){
   var ironMan = {
     health: 120,
     counterAttack: 8,
+    attack: 8,
   };
 
   var capAmerica = {
     health: 100,
     counterAttack: 5,
+    attack: 5,
   };
 
   var thor = {
     health: 150,
     counterAttack: 20,
+    attack: 20,
   };
 
   var winterSoldier = {
     health: 180,
     counterAttack: 25,
+    attack: 25,
   };
 
   var heroSelected = false;
@@ -130,7 +134,7 @@ characterStats();
 //=============================================================================
   $('#attackOpponent').on('click', function() {
     if( foeSelected === true) {
-    fighter.counterAttack += 8;
+    fighter.counterAttack += fighter.attack;
     opponent.health = opponent.health - fighter.counterAttack;
     fighter.health = fighter.health - opponent.counterAttack;
     console.log(opponent.health);
@@ -168,7 +172,7 @@ characterStats();
     //Lets the player know that they have defeated their current opponent, decreases the opponentsLeft count by 1, and removes the defeated opponent from the challenger section.
         if (opponent.health <= 0 && foeSelected === true){
           opponentsLeft -=1;
-          fighter.health += opponent.counterAttack;
+          fighter.health += opponent.counterAttack; //in the demo video the player's selected hero doesn't lose health on the last hit to his enemy. This makes that possible. 
           foeSelected = false;
           $('#fightDetails').empty();
           $('.challenger').empty();
