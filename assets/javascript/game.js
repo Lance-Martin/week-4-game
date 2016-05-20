@@ -1,7 +1,7 @@
 $(document).ready(function(){
 
 
-//Character objects and global variables
+//Character objects and global variables/functions
 //============================================================================
   var ironMan = {
     health: 120,
@@ -33,6 +33,30 @@ $(document).ready(function(){
   var opponentsLeft = 3;
   var foeSelected = false;
 
+  function reset(){
+    heroSelected = false;
+    foeSelected = false;
+    opponentsLeft = 3;
+    $('#instruction').html("Select your fighter");
+    $('#fightDetails').empty();
+    $('.selectHero').empty();
+    $('.challenger').empty();
+    $('.myCharacter').empty();
+    $('.selectHero').append('<div class="col-md-2 ironMan"></div>');
+    $('.selectHero').append('<div class="col-md-2 capAmerica"></div>');
+    $('.selectHero').append('<div class="col-md-2 thor"></div>');
+    $('.selectHero').append('<div class="col-md-2 winterSoldier"></div>');
+    ironMan.health = 120;
+    capAmerica.health = 100;
+    thor.health = 150;
+    winterSoldier.health = 180;
+    ironMan.counterAttack = 8;
+    capAmerica.counterAttack = 5;
+    thor.counterAttack = 20;
+    winterSoldier.counterAttack = 25;
+    characterStats();
+    clicks();
+  }
 
 //On Click events for characters
 //===========================================================================
@@ -130,6 +154,7 @@ function characterStats() {
 }
 
 characterStats();
+
 //On click event for fight button
 //=============================================================================
   $('#attackOpponent').on('click', function() {
@@ -156,13 +181,13 @@ characterStats();
       $('#fightDetails').html("<p>Pick a new opponent before continuing to fight");
     }
 
-    //Alerts the player that their character has died
+    //if the players character is killed then notify/alert them that their character has died and then reset the game
         if (fighter.health <= 0 && opponent.health > 0) {
           $('#fightDetails').html("<p>Your hero was killed. Try again.</p>");
           alert('Your fighter was killed! Play again');
           reset();
         }
-
+    //If the players character dies and they killed their opponent then alert them that they died but took down their opponent with them, then reset the game.
         if (fighter.health <= 0 && opponent.health <= 0) {
           $('#fightDetails').html("<p>Your hero was killed. Try again.</p>");
           alert("Your character was killed, but you died a hero. You took your opponent down with you. Play again. ");
@@ -172,7 +197,7 @@ characterStats();
     //Lets the player know that they have defeated their current opponent, decreases the opponentsLeft count by 1, and removes the defeated opponent from the challenger section.
         if (opponent.health <= 0 && foeSelected === true){
           opponentsLeft -=1;
-          fighter.health += opponent.counterAttack; //in the demo video the player's selected hero doesn't lose health on the last hit to his enemy. This makes that possible. 
+          fighter.health += opponent.counterAttack; //in the demo video the player's selected hero doesn't lose health on the last hit to his enemy. This makes that possible.
           foeSelected = false;
           $('#fightDetails').empty();
           $('.challenger').empty();
@@ -180,34 +205,7 @@ characterStats();
           console.log("opponentsLeft: "+ opponentsLeft);
         }
 
-
-
-    function reset(){
-      heroSelected = false;
-      foeSelected = false;
-      opponentsLeft = 3;
-      $('#instruction').html("Select your fighter");
-      $('#fightDetails').empty();
-      $('.selectHero').empty();
-      $('.challenger').empty();
-      $('.myCharacter').empty();
-      $('.selectHero').append('<div class="col-md-2 ironMan"></div>');
-      $('.selectHero').append('<div class="col-md-2 capAmerica"></div>');
-      $('.selectHero').append('<div class="col-md-2 thor"></div>');
-      $('.selectHero').append('<div class="col-md-2 winterSoldier"></div>');
-      ironMan.health = 120;
-      capAmerica.health = 100;
-      thor.health = 150;
-      winterSoldier.health = 180;
-      ironMan.counterAttack = 8;
-      capAmerica.counterAttack = 5;
-      thor.counterAttack = 20;
-      winterSoldier.counterAttack = 25;
-      characterStats();
-      clicks();
-
-    }
-
+  //If all opponents are defeated then alert the player that they have defeated all their opponents and then reset the game for them to play again.
     if (opponentsLeft === 0) {
       alert("Amazing job hero! You've proven yourself as the best and defeated all of your challengers. Pick a new character to play again.");
       reset();
@@ -216,5 +214,10 @@ characterStats();
 
 //Updates the characters displayed health affter being attacked
     characterStats();
+  });
+
+//If the player clicks the reset button then reset the game
+  $('#reset').on('click', function(){
+    reset();
   });
 });
